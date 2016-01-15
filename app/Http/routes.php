@@ -15,9 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/hello', function () {
-  echo "hello";
-});
 
 /*
 |--------------------------------------------------------------------------
@@ -31,15 +28,24 @@ Route::get('/hello', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+    // Copied from Laravel Auth website
+    // Authentication routes...
+    Route::get('auth/login', 'Auth\AuthController@getLogin');
+    Route::post('auth/login', 'Auth\AuthController@postLogin');
+    Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+    // Registration routes...
+    Route::get('auth/register', 'Auth\AuthController@getRegister');
+    Route::post('auth/register', 'Auth\AuthController@postRegister');
+    
+    # for auth redirect
+    Route::get('home', function () {
+        echo 'welcome home';
+    });
+
+    Route::get('/hello', function () {
+      echo "hello";
+    });
+    
 });
 
-// Copied from Laravel Auth website
-// Authentication routes...
-Route::get('auth/login', 'Auth\AuthController@getLogin');
-Route::post('auth/login', 'Auth\AuthController@postLogin');
-Route::get('auth/logout', 'Auth\AuthController@getLogout');
-
-// Registration routes...
-Route::get('auth/register', 'Auth\AuthController@getRegister');
-Route::post('auth/register', 'Auth\AuthController@postRegister');

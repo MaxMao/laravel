@@ -91,8 +91,8 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
-
+    //'key' => env('APP_KEY'), we need a 32 char string
+    'key' => '12345678901234567890123456789012',
     'cipher' => 'AES-256-CBC',
 
     /*
